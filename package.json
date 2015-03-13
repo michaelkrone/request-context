@@ -1,7 +1,7 @@
 {
   "name": "request-context",
-  "version": "0.0.1",
-  "description": "Simple connect middleware to access data bound to a request context whithout the need to have access to the request object.",
+  "version": "0.0.2",
+  "description": "Simple connect middleware to wrap the request handling in a domain and set and access data for the current request lifecycle only.",
   "main": "lib/index.js",
   "scripts": {
     "test": "gulp test"
@@ -26,9 +26,12 @@
   },
   "homepage": "https://github.com/michaelkrone/request-context",
   "devDependencies": {
+    "connect": "^3.3.4",
     "gulp": "^3.8.11",
     "gulp-jsdoc": "^0.1.4",
     "gulp-mocha": "^2.0.0",
-    "gulp-util": "^3.0.4"
+    "gulp-util": "^3.0.4",
+    "mocha": "^2.2.1",
+    "request": "^2.53.0"
   }
 }
