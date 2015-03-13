@@ -1,6 +1,6 @@
 {
   "name": "request-context",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Simple connect middleware to access data bound to a request context whithout the need to have access to the request object.",
   "main": "lib/index.js",
   "scripts": {
