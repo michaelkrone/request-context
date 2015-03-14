@@ -29,8 +29,8 @@ app.use(function (req, res, next) {
 
 // save a model in put requests
 app.put(function (req, res, next) {
-	new Model(req.body).save(function (err, user) {
-		res.json(user);
+	new Model(req.body).save(function (err, doc) {
+		res.json(doc);
 	});
 });
 
