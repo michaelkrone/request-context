@@ -29,7 +29,9 @@ app.use(function (req, res, next) {
 
 // save a model in put requests
 app.put(function (req, res, next) {
-	Model.save(req.body, next);
+	new Model(req.body).save(function (err, user) {
+		res.json(user);
+	});
 });
 
 // start server etc.
@@ -41,6 +43,7 @@ In the Model definition file:
 var contextService = require('request-context');
 
 // set the user who made changes to this document
+// note that this method is called async in the document context
 modelSchema.pre('save', function (next) {
 	// access the user object which has been set in the request middleware
 	this.userName = contextService.getContext('request:user.name');
