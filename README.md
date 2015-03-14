@@ -1,5 +1,3 @@
-[![NPM Version][npm-image]][npm-url]
-
 Simple connect middleware for accessing data in a request context.
 Wrap the request handling in a domain and set and access data for the current request lifecycle only.
 All following functions will be run in the created 'namespace'.
@@ -44,7 +42,7 @@ var contextService = require('request-context');
 
 // set the user who made changes to this document
 modelSchema.pre('save', function (next) {
-	// access the user object which has been send by the 
+	// access the user object which has been set in the request middleware
 	this.userName = contextService.getContext('request:user.name');
 	// or	this.userName = contextService.getContext('request').user.name;
 	next();
@@ -61,13 +59,13 @@ app.use(middleware('some namespace'));
 ```
 
 - `setContext`
-Set the context for a key:
+Set the context for a key
 ```js
 contextService.setContext('namespace:key', {some: value});
 ```
 
 - `getContext`
-Get the context for a key:
+Get the context for a key
 ```js
 contextService.getContext('namespace:key.some.value'); // returns {some: value}
 ```
