@@ -61,11 +61,11 @@ app.use(middleware('some namespace'));
 - `setContext`
 Set the context for a key
 ```js
-contextService.setContext('namespace:key', {some: value});
+contextService.setContext('namespace:key', {some: 'value'});
 ```
 
 - `getContext`
 Get the context for a key
 ```js
-contextService.getContext('namespace:key.some.value'); // returns {some: value}
+contextService.getContext('namespace:key.some'); // returns 'value'
 ```
