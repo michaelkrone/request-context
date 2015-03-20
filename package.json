@@ -1,6 +1,6 @@
 {
   "name": "request-context",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Simple connect middleware to wrap the request handling in a domain and set and access data for the current request lifecycle only.",
   "main": "lib/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "connect",
+    "express",
     "request",
     "context",
     "data",
