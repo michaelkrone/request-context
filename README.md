@@ -31,7 +31,7 @@ app.use(contextService.middleware('request'));
 app.use(function (req, res, next) {
 	User.findById(req.cookies._id, function (err, user) {
 		// set the user who made this request on the context
-		contextService.setContext('request:user', user);
+		contextService.set('request:user', user);
 		next();
 	});
 });
@@ -57,8 +57,8 @@ var contextService = require('request-context');
 // note that this method is called async in the document context
 modelSchema.pre('save', function (next) {
 	// access the user object which has been set in the request middleware
-	this.modifiedBy = contextService.getContext('request:user.name');
-	// or	this.userName = contextService.getContext('request').user.name;
+	this.modifiedBy = contextService.get('request:user.name');
+	// or	this.modifiedBy = contextService.get('request').user.name;
 	next();
 });
 ```
@@ -72,16 +72,30 @@ var middleware = require('request-context').middleware;
 app.use(middleware('some namespace'));
 ```
 
-- `setContext`
+- `set`, `setContext`
 Set the context for a key
 ```js
 var contextService = require('request-context');
-contextService.setContext('namespace:key', {some: 'value'});
+contextService.set('namespace:key', {some: 'value'});
 ```
 
-- `getContext`
+- `get`, `getContext`
 Get the context for a key
 ```js
 var contextService = require('request-context');
-contextService.getContext('namespace:key.some'); // returns 'value'
+contextService.get('namespace:key.some'); // returns 'value'
 ```
+
+## Documentation
+
+To generate the jsdoc documentation run
+```bash
+$ gulp docs
+
+## Test
+
+To run the packaged tests:
+```bash
+$ gulp test
+```
+
