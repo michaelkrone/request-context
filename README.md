@@ -86,11 +86,43 @@ var contextService = require('request-context');
 contextService.get('namespace:key.some'); // returns 'value'
 ```
 
+## Object Path Syntax
+Any value from the context object can be accessed by a simple object dot notation:
+
+```js
+var contextService = require('request-context');
+
+// set an object on the namespace
+contextService.set('namespace:character',	{
+		name: 'Arya Stark',
+		location: {
+			name: 'Winterfell',
+			region: 'North'
+		}
+	});
+
+// this will return the complete object
+var char = contextService.get('namespace:character');
+// work with the object
+var region = char.location.region;
+
+// this will return 'Arya Stark'
+contextService.get('namespace:character.name')
+
+// this will return the location object
+contextService.get('namespace:character.location')
+
+// this will return 'North'
+contextService.get('namespace:character.location.region')
+
+```
+
 ## Documentation
 
 To generate the jsdoc documentation run
 ```bash
 $ gulp docs
+```
 
 ## Test
 
