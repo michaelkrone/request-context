@@ -91,5 +91,11 @@ contextService.get('namespace:key.some'); // returns 'value'
 To generate the jsdoc documentation run
 ```bash
 $ gulp docs
+
+## Test
+
+To run the packaged tests:
+```bash
+$ gulp test
 ```
 
