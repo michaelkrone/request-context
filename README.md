@@ -120,6 +120,7 @@ contextService.get('namespace:character.location.region')
 
 ## Documentation
 
+The documentation is available on [the github pages](http://michaelkrone.github.io/request-context/).
 To generate the jsdoc documentation run
 ```bash
 $ gulp docs
