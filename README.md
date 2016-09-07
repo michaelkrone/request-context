@@ -1,3 +1,4 @@
+# request-context ![alt tag](https://travis-ci.org/michaelkrone/request-context.svg)
 Simple connect middleware for accessing data in a request context.
 Wrap the request handling in a domain and set and access data for the current request lifecycle only.
 All following functions will be run in the created 'namespace'.
@@ -21,15 +22,15 @@ $ npm install request-context
 
 server config in app.js:
 ```js
-var app = express();
-var contextService = require('request-context');
+const app = express();
+const contextService = require('request-context');
 
 // wrap requests in the 'request' namespace (can be any string)
 app.use(contextService.middleware('request'));
 
 // set the logged in user in some auth middleware
 app.use(function (req, res, next) {
-	User.findById(req.cookies._id, function (err, user) {
+	User.findById(req.cookies._id, (err, user) => {
 		// set the user who made this request on the context
 		contextService.set('request:user', user);
 		next();
@@ -38,9 +39,14 @@ app.use(function (req, res, next) {
 
 // save a model in put requests
 app.put(function (req, res, next) {
-	new Model(req.body).save(function (err, doc) {
-		res.json(doc);
-	});
+	new Model(req.body).save((err, doc) => res.json(doc));
+});
+
+// always use an default express/connect error handling middleware
+// it will be called if any errors occur in the domain
+// see http://expressjs.com/en/guide/error-handling.html
+app.use(function (err, req, res, next) {
+	res.status(err.status || 500);
 });
 
 // start server etc.
@@ -77,13 +83,14 @@ Set the context for a key
 ```js
 var contextService = require('request-context');
 contextService.set('namespace:key', {some: 'value'});
+contextService.set('namespace:key.some', 'other');
 ```
 
 - `get`, `getContext`
 Get the context for a key
 ```js
 var contextService = require('request-context');
-contextService.get('namespace:key.some'); // returns 'value'
+contextService.get('namespace:key.some'); // returns 'other'
 ```
 
 ## Object Path Syntax
@@ -103,22 +110,21 @@ contextService.set('namespace:character',	{
 
 // this will return the complete object
 var char = contextService.get('namespace:character');
+
 // work with the object
 var region = char.location.region;
 
 // this will return 'Arya Stark'
-contextService.get('namespace:character.name')
+contextService.get('namespace:character.name');
 
-// this will return the location object
-contextService.get('namespace:character.location')
-
-// this will return 'North'
-contextService.get('namespace:character.location.region')
+// this will set the region to 'Westeros'
+contextService.set('namespace:character.location.region', 'Westeros');
 
 ```
 
 ## Documentation
 
+The documentation is available on [the github pages](http://michaelkrone.github.io/request-context/).
 To generate the jsdoc documentation run
 ```bash
 $ gulp docs

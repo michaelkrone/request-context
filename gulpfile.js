@@ -38,4 +38,4 @@ gulp.task('docs', function () {
 
 gulp.task('build', ['test', 'docs']);
 
-gulp.task('default', ['build']);
+gulp.task('default', ['test']);
