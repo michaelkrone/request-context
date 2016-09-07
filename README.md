@@ -22,15 +22,15 @@ $ npm install request-context
 
 server config in app.js:
 ```js
-var app = express();
-var contextService = require('request-context');
+const app = express();
+const contextService = require('request-context');
 
 // wrap requests in the 'request' namespace (can be any string)
 app.use(contextService.middleware('request'));
 
 // set the logged in user in some auth middleware
 app.use(function (req, res, next) {
-	User.findById(req.cookies._id, function (err, user) {
+	User.findById(req.cookies._id, (err, user) => {
 		// set the user who made this request on the context
 		contextService.set('request:user', user);
 		next();
@@ -39,9 +39,14 @@ app.use(function (req, res, next) {
 
 // save a model in put requests
 app.put(function (req, res, next) {
-	new Model(req.body).save(function (err, doc) {
-		res.json(doc);
-	});
+	new Model(req.body).save((err, doc) => res.json(doc));
+});
+
+// always use an default express/connect error handling middleware
+// it will be called if any errors occur in the domain
+// see http://expressjs.com/en/guide/error-handling.html
+app.use(function (err, req, res, next) {
+	res.status(err.status || 500);
 });
 
 // start server etc.
