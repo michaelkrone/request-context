@@ -83,13 +83,14 @@ Set the context for a key
 ```js
 var contextService = require('request-context');
 contextService.set('namespace:key', {some: 'value'});
+contextService.set('namespace:key.some', 'other');
 ```
 
 - `get`, `getContext`
 Get the context for a key
 ```js
 var contextService = require('request-context');
-contextService.get('namespace:key.some'); // returns 'value'
+contextService.get('namespace:key.some'); // returns 'other'
 ```
 
 ## Object Path Syntax
@@ -109,17 +110,15 @@ contextService.set('namespace:character',	{
 
 // this will return the complete object
 var char = contextService.get('namespace:character');
+
 // work with the object
 var region = char.location.region;
 
 // this will return 'Arya Stark'
-contextService.get('namespace:character.name')
+contextService.get('namespace:character.name');
 
-// this will return the location object
-contextService.get('namespace:character.location')
-
-// this will return 'North'
-contextService.get('namespace:character.location.region')
+// this will set the region to 'Westeros'
+contextService.set('namespace:character.location.region', 'Westeros');
 
 ```
 
