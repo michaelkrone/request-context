@@ -1,3 +1,4 @@
+# request-context ![alt tag](https://travis-ci.org/michaelkrone/request-context.svg)
 Simple connect middleware for accessing data in a request context.
 Wrap the request handling in a domain and set and access data for the current request lifecycle only.
 All following functions will be run in the created 'namespace'.
