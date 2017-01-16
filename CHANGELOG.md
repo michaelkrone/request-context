@@ -2,7 +2,7 @@
 
 ### Breaking Changes
 - Node.js >=5 only
-- [PR#18](https://github.com/michaelkrone/request-context/pull/18): Getting/setting values will now affect the request context.
+- [PR#18](https://github.com/michaelkrone/request-context/pull/18): Getting/setting values will now affect the request context only.
 Existing domains are not used anymore. This breaks if your code accessed values in domains not created by the middleware.
 See the [pull request](https://github.com/michaelkrone/request-context/pull/18) for further details.
 
