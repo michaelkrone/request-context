@@ -1,4 +1,4 @@
-# request-context ![alt tag](https://travis-ci.org/michaelkrone/request-context.svg)
+# request-context
 Simple connect middleware for accessing data in a request context.
 Wrap the request handling in a domain and set and access data for the current request lifecycle only.
 All following functions will be run in the created 'namespace'.
@@ -10,7 +10,7 @@ is the function chain. This module provides a middleware and an easy to use API 
 from anywhere in the function chain. No matter if the functions are called async or not.
 
 See the [Domain Docs](https://nodejs.org/api/domain.html) for further information on error handling
-for domains.
+for domains. Note that the domain module is pending deprecation!
 
 ## Install
 
@@ -64,7 +64,7 @@ var contextService = require('request-context');
 modelSchema.pre('save', function (next) {
 	// access the user object which has been set in the request middleware
 	this.modifiedBy = contextService.get('request:user.name');
-	// or	this.modifiedBy = contextService.get('request').user.name;
+	// or this.modifiedBy = contextService.get('request').user.name;
 	next();
 });
 ```
@@ -79,7 +79,7 @@ app.use(middleware('some namespace'));
 ```
 
 - `set`, `setContext`
-Set the context for a key
+Set the context for a key on the context created by the middleware.
 ```js
 var contextService = require('request-context');
 contextService.set('namespace:key', {some: 'value'});
@@ -87,7 +87,7 @@ contextService.set('namespace:key.some', 'other');
 ```
 
 - `get`, `getContext`
-Get the context for a key
+Get the context for a key on the context created by the middleware.
 ```js
 var contextService = require('request-context');
 contextService.get('namespace:key.some'); // returns 'other'
