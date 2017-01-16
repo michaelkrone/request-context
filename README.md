@@ -71,6 +71,8 @@ modelSchema.pre('save', function (next) {
 
 ## API
 
+Also available on [the github pages](http://michaelkrone.github.io/request-context/).
+
 - `middleware`
 Returns a function that can be used as connect middleware. Takes a string as the name of the namespace as its argument. All functions called after this middleware, async or not, will have read/write access to the context.
 ```js
