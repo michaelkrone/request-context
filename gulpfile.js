@@ -4,17 +4,29 @@
  */
 'use strict';
 
-var gulp = require('gulp');
-var jsdoc = require('gulp-jsdoc');
-var mocha = require('gulp-mocha');
-var utils = require('gulp-util');
+const gulp = require('gulp');
+const jsdoc = require('gulp-jsdoc');
+const mocha = require('gulp-mocha');
+const eslint = require('gulp-eslint');
+const utils = require('gulp-util');
+
+/**
+ * lint task
+ * lint code
+ */
+gulp.task('lint', function () {
+    return gulp.src(['lib/**/*.js','!node_modules/**'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
 
 /**
  * test task
  * Run unit tests
  */
-gulp.task('test', function () {
-	return gulp.src('lib/index.spec.js', {read: false})
+gulp.task('test', ['lint'], function () {
+	return gulp.src('lib/**/*.spec.js', {read: false})
 		.pipe(mocha({
 			ui: 'bdd',
 			reporter: 'spec'
