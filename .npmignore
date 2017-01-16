@@ -1,3 +1,4 @@
 .gitignore
 .vscode
+.travis.yml
 docs
