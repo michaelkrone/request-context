@@ -1,6 +1,6 @@
 {
   "name": "request-context",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple connect middleware to wrap the request handling in a domain and set and access data for the current request lifecycle only.",
   "main": "lib/index.js",
   "scripts": {
@@ -29,8 +29,9 @@
   "devDependencies": {
     "connect": "^3.3.4",
     "gulp": "^3.8.11",
-    "gulp-jsdoc": "^0.1.4",
-    "gulp-mocha": "^2.0.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-mocha": "^3.0.1",
     "gulp-util": "^3.0.4",
     "request": "^2.53.0"
   }
