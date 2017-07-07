@@ -3,14 +3,14 @@ Simple connect middleware for accessing data in a request context.
 Wrap the request handling in a domain and set and access data for the current request lifecycle only.
 All following functions will be run in the created 'namespace'.
 
+**See the [Domain Docs](https://nodejs.org/api/domain.html) for further information on error handling
+for domains. Note that the domain module is pending deprecation!**
+
 ## The problem
 You would like to access data from the request or any middleware in a completely different context.
 Due to the async architecture of Node it can become a nightmare to pass the data to all callbacks
 is the function chain. This module provides a middleware and an easy to use API to access data
 from anywhere in the function chain. No matter if the functions are called async or not.
-
-See the [Domain Docs](https://nodejs.org/api/domain.html) for further information on error handling
-for domains. Note that the domain module is pending deprecation!
 
 ## Install
 
